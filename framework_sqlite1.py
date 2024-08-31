@@ -1,4 +1,4 @@
-# CRUDS Framework program usin SQLite3
+# CRUDS Framework program using SQLite3
 
 import sqlite3
 
