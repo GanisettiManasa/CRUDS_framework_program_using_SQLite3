@@ -65,14 +65,16 @@ def exitProgram():
     exit()
 
 def menu():
-    while True:
-        cursor.execute(f"SELECT value FROM {CONFIG_TABLE_NAME} WHERE key='Menu'")
-        menu = cursor.fetchone()
-        if menu:
-            print(menu[0].replace('\\n', '\n'))      
-        choice = int(input("Enter your choice: "))  
-        if 1 <= choice <= len(menuOptions):
-            menuOptions[choice - 1]()
-        else:
-            print("Invalid choice, please try again.")
+    cursor.execute(f"SELECT value FROM {CONFIG_TABLE_NAME} WHERE key='Menu'")
+    menu = cursor.fetchone()
+    if menu:
+        menu_text = menu[0].replace('\\n', '\n')
+        while True:
+            print(menu_text)
+            choice = int(input("Enter your choice: "))
+            if 1 <= choice <= len(menuOptions):
+                menuOptions[choice - 1]()
+            else:
+                print("Invalid choice, please try again.")
+
 menu()
